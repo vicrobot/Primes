@@ -66,8 +66,8 @@ for i in Root+[{}]:
      primes += list(genp3(i))
 
 primes = list(set(primes))
+print(primes)
 print(len(primes))
-print(primes[-1])
 '''.format(T, T)                       
 
 

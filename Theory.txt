@@ -1,3 +1,25 @@
 Firstly i have the list of roots and recursions..(Appended as queue) Let list be Root
 Now find the primes till Root[0] then use those primes to find the primes till Root[2] then use those primes to find primes till Root[3] ...
 
+def genp3(n):
+    for i in range(2, n):
+        var1 = True
+        for j in primes:
+            if j>= i: continue
+            else:
+                if i%j==0:
+                    var1 = 0
+                    break
+        if var1: yield i
+
+primes = set([2,3])
+
+for i in Root+[{1}]:
+     primes.update(set(genp3(i)))
+     
+    
+Seeing this part; and knowing that membership checking is fast; we can use other method of prime sieve.
+
+The primes can have skips like if one prime occured; we can skip next i .
+
+There is something called Sundaram's sieve.
