@@ -1,0 +1,3 @@
+Firstly i have the list of roots and recursions..(Appended as queue) Let list be Root
+Now find the primes till Root[0] then use those primes to find the primes till Root[2] then use those primes to find primes till Root[3] ...
+
