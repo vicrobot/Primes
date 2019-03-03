@@ -23,3 +23,6 @@ Seeing this part; and knowing that membership checking is fast; we can use other
 The primes can have skips like if one prime occured; we can skip next i .
 
 There is something called Sundaram's sieve.
+Coprime q: https://stackoverflow.com/q/1019040/9134528
+
+# HOW BEAUTIFUL IT IS THAT ANYTHING * 10 IS VERY PATTERNIC IN NUMBERS. IS THERE ANY DEEP REASON? CAN WE MAKE OUR NUMBER SYSTEM WRITING MORE RELATED TO VALUES?
