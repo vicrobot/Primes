@@ -1,5 +1,5 @@
 Firstly i have the list of roots and recursions..(Appended as queue) Let list be Root
-Now find the primes till Root[0] then use those primes to find the primes till Root[2] then use those primes to find primes till Root[3] ...
+Now find the primes till Root[0] then use those primes to find the primes till Root[1] then use those primes to find primes till Root[2] ...
 
 def genp3(n):
     for i in range(2, n):
