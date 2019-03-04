@@ -1,5 +1,6 @@
 from timeit import timeit
-
+#coolest response:- https://codereview.stackexchange.com/a/71166/194301
+#About 16000000 in 0.1 sec. My rec: 3.6 sec. Surely it'll increase.
 T = int(input("Limit").rstrip())
 
 alg0 = '''
@@ -37,6 +38,7 @@ def genp2(n):
 l2 = sorted(list(genp2({})))
 print(len(l2))
 '''.format(T)
+
 
 alg2 = ''' 
 def root(n):
@@ -100,7 +102,6 @@ def genp3(n):
         for j in primes:
             if i%j==0:
                 var1 = 0
-                # now this means that i won't be divisible by j till i+j, i+2j,.. we can make a tuple(i,j) then can skip these.
                 break
         if var1:
             yield i
@@ -115,7 +116,7 @@ for i in Root+[{1}]:
 print(len(primes))
 '''.format(T, T)
 
-alg5 = ''' 
+alg5 = '''                   # my best till now.
 T = {0}
 def root(n):
     Root = []
@@ -130,7 +131,7 @@ Root = root(T)
 def genp3(n):
     v_set = set(range(max(primes)+2,n, 2))
     for j in primes:
-        v_set.difference_update(set([j*i for i in range(1,int(n/j)+1, 2)]))
+        v_set.difference_update(set(range(j,n, 2*j)))  # this step can be simplified if we'd skip more non-primes.
     return list(v_set)
 
 primes = [2,3]
@@ -142,11 +143,20 @@ for i in Root+[T]:
 print(len(primes))
 '''.format(T)
 
-'''print(timeit(stmt = alg1, number = 1))
-print(timeit(stmt = alg2, number = 1))
-print(timeit(stmt = alg3_currupt, number = 1))
-print(timeit(stmt = alg4, number = 1))'''
-print(timeit(stmt = alg5, number = 1))
+alg6 = """
+def sieve_of_eratosthenes(limit):
+    is_prime = [True] * (limit + 1)
+    primes = []
+    for i in range(2, limit + 1):
+        if is_prime[i]:
+            primes.append(i)
+            for j in range(i * i, limit + 1, i):
+                is_prime[j] = False
+    return primes
+print(len(sieve_of_eratosthenes({})))
+""".format(T)
+
+print(timeit(stmt = alg6, number = 1))
 
 
 

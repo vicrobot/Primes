@@ -1,28 +1,13 @@
-Firstly i have the list of roots and recursions..(Appended as queue) Let list be Root
-Now find the primes till Root[0] then use those primes to find the primes till Root[1] then use those primes to find primes till Root[2] ...
-
-def genp3(n):
-    for i in range(2, n):
-        var1 = True
-        for j in primes:
-            if j>= i: continue
-            else:
-                if i%j==0:
-                    var1 = 0
-                    break
-        if var1: yield i
-
-primes = set([2,3])
-
-for i in Root+[{1}]:
-     primes.update(set(genp3(i)))
-     
-    
-Seeing this part; and knowing that membership checking is fast; we can use other method of prime sieve.
-
 The primes can have skips like if one prime occured; we can skip next i .
 
 There is something called Sundaram's sieve.
-Coprime q: https://stackoverflow.com/q/1019040/9134528
+The fact goes like this:- 
+
+For 1<= i <= j; (i,j) belonging to n; (2i+1)(2j+1) is not a prime or say eq. of non primes; and all numbers which can satisfy this eq; is non-prime.
+Now (2i+1)(2j+1) =  2i + 2j + 4ij + 1 = 2(i + j + 2ij) + 1 which tells that odds made by all numbers except numbers satisfying this eq i + j + 2ij will make odds that would ne non non primes that is primes(except 2).
+
+
+
+https://stackoverflow.com/q/1019040/9134528
 
 # HOW BEAUTIFUL IT IS THAT ANYTHING * 10 IS VERY PATTERNIC IN NUMBERS. IS THERE ANY DEEP REASON? CAN WE MAKE OUR NUMBER SYSTEM WRITING MORE RELATED TO VALUES?
