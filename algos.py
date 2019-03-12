@@ -1,8 +1,8 @@
 from timeit import timeit
 #coolest response:- https://codereview.stackexchange.com/a/71166/194301
-#About 16000000 in 0.1 sec. My rec: 3.6 sec. Surely it'll increase.
+#About 16000000 in 0.1 sec. My rec: 2.47 sec. Surely it'll increase.
 T = int(input("Limit").rstrip())
-
+Alg_num = int(input('Algorithm:- ').rstrip())
 alg0 = '''
 def genp1(n):
     for i in range(2,n):
@@ -15,6 +15,7 @@ def genp1(n):
             yield i
 l1 = list(genp1({}))
 
+print(len(l1))
 '''.format(T)
 
 
@@ -85,6 +86,7 @@ print(len(get_primes({})))
 '''.format(T)
 
 alg4 = ''' 
+T = {0}
 def root(n):
     Root = []
     upper = int(n**0.5)+1
@@ -93,23 +95,24 @@ def root(n):
         upper = int(upper**0.5)+1
     return Root
 
-Root = root({0})
+Root = root(T)
 
 def genp3(n):
-    v = iter(range(max(primes)+1,n))
+    v = iter(range(max(primes)+2,n, 2))
+    a = []
     for i in v:
         var1 = True
         for j in primes:
             if i%j==0:
                 var1 = 0
                 break
-        if var1:
-            yield i
-            next(v)
+        if var1: a.append(i)
+        #next(v)
+    return a
 
 primes = [2,3]
 
-for i in Root+[{1}]:
+for i in Root+[T]:
      primes += list(genp3(i))
 
 #print(primes)
@@ -129,17 +132,22 @@ def root(n):
 Root = root(T)
 
 def genp3(n):
-    v_set = set(range(max(primes)+2,n, 2))
+    v_set = set(range(max(primes)+2,n, 2))  # v_set is free of evens.
     for j in primes:
-        v_set.difference_update(set(range(j,n, 2*j)))  # this step can be simplified if we'd skip more non-primes.
+        rem = j%3
+        if rem == 2:
+            v_set.difference_update(range(j**2,n, 6*j), range(j**2 + 2*j,n, 6*j))
+        elif rem == 1:
+            v_set.difference_update(range(j**2 ,n, 6*j), range(j**2 + 4*j,n, 6*j))
+        else:
+            v_set.difference_update(range(j**2,n, 2*j))   # 2*j prevents even non-primes.
     return list(v_set)
 
 primes = [2,3]
 
 for i in Root+[T]:
-     primes += list(genp3(i))
+     primes += genp3(i)
 
-#print(primes)
 print(len(primes))
 '''.format(T)
 
@@ -155,19 +163,6 @@ def sieve_of_eratosthenes(limit):
     return primes
 print(len(sieve_of_eratosthenes({})))
 """.format(T)
-
-print(timeit(stmt = alg6, number = 1))
-
-
-
-
-
-
-
-
-
-
-
-
-
+list_alg = [alg0, alg1, alg2, alg3_currupt, alg4, alg5, alg6]
+print(timeit(stmt = list_alg[Alg_num], number = 1))
 
